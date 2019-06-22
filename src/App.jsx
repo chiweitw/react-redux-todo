@@ -25,11 +25,19 @@ class App extends Component {
     });
   };
 
+  addTodo = todo => {
+    todo.id = 1 + Math.max(...this.state.todos.map(todo => todo.id));
+    let todos = [...this.state.todos, todo];
+    this.setState({
+      todos: todos
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Todos</h2>
-        <TodoForm />
+        <TodoForm addTodo={this.addTodo} />
         <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );

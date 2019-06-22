@@ -2,25 +2,38 @@ import React, { Component } from "react";
 
 export default class TodoForm extends Component {
   state = {
-    content: ""
+    todo: {
+      content: ""
+    }
   };
 
   handleChange = e => {
     this.setState({
-      content: e.target.value
+      todo: {
+        content: e.target.value
+      }
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.addTodo(this.state.todo);
+    this.setState({
+      todo: {
+        content: ""
+      }
+    });
   };
 
   render() {
     const form = (
       <form onSubmit={this.handleSubmit}>
         <label>Add New Todo</label>
-        <input onChange={this.handleChange} type="text" />
+        <input
+          onChange={this.handleChange}
+          type="text"
+          value={this.state.todo.content}
+        />
         <button>Add</button>
       </form>
     );
