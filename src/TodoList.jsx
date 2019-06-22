@@ -9,7 +9,7 @@ export default class TodoList extends Component {
             return (
               <li id={todo.id} key={todo.id}>
                 {todo.content}
-                <button onClick={() => this.props.handleDelete(todo.id)}>
+                <button onClick={() => this.props.deleteTodo(todo.id)}>
                   delete
                 </button>
               </li>

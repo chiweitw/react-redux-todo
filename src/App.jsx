@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
 
 class App extends Component {
   state = {
@@ -15,9 +16,7 @@ class App extends Component {
     ]
   };
 
-  handleDelete = id => {
-    console.log(this.state);
-    console.log(id);
+  deleteTodo = id => {
     const todos = this.state.todos.filter(todo => {
       return todo.id !== id;
     });
@@ -30,7 +29,8 @@ class App extends Component {
     return (
       <div>
         <h2>Todos</h2>
-        <TodoList todos={this.state.todos} handleDelete={this.handleDelete} />
+        <TodoForm />
+        <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }
