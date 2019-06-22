@@ -17,6 +17,7 @@ export default class TodoList extends Component {
             return (
               <li id={todo.id} key={todo.id}>
                 <input
+                  checked={todo.completed ? true : false}
                   onChange={() => this.props.toggleTodo(todo)}
                   type="checkbox"
                 />
