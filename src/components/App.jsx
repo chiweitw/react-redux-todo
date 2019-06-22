@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
+import NavBar from "./NavBar";
 
 let nexId = 1;
 
@@ -67,6 +68,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <h2>Todos</h2>
         <TodoForm addTodo={this.addTodo} />
         <TodoList
