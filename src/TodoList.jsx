@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class TodoList extends Component {
   render() {
-    return (
+    const todoList = this.props.todos.length ? (
       <div>
         <ul>
           {this.props.todos.map(todo => {
@@ -17,6 +17,9 @@ export default class TodoList extends Component {
           })}
         </ul>
       </div>
+    ) : (
+      <p>No task</p>
     );
+    return todoList;
   }
 }
