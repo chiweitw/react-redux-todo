@@ -7,7 +7,9 @@ export default class TodoFilter extends Component {
         <button onClick={() => this.props.completeAllTodo()}>
           Complete All
         </button>
-        <button>Uncomplete All</button>
+        <button onClick={() => this.props.unCompleteAllTodo()}>
+          Uncomplete All
+        </button>
         <button onClick={() => this.props.deleteAllTodo()}>Delete All</button>
       </div>
     );

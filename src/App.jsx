@@ -49,6 +49,15 @@ class App extends Component {
     });
   };
 
+  unCompleteAllTodo = () => {
+    const todos = this.state.todos.map(todo => {
+      return { ...todo, completed: false };
+    });
+    this.setState({
+      todos: todos
+    });
+  };
+
   deleteAllTodo = () => {
     this.setState({
       todos: []
@@ -67,6 +76,7 @@ class App extends Component {
         />
         <TodoFilter
           completeAllTodo={this.completeAllTodo}
+          unCompleteAllTodo={this.unCompleteAllTodo}
           deleteAllTodo={this.deleteAllTodo}
         />
       </div>
