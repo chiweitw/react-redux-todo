@@ -4,6 +4,14 @@ import { connect } from "react-redux";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
+import {
+  deleteTodo,
+  addTodo,
+  toggleTodo,
+  completeAllTodo,
+  uncompleteAllTodo,
+  deleteAllTodo
+} from "../../actions/todoActions";
 
 class Todo extends Component {
   render() {
@@ -35,37 +43,22 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteTodo: id => {
-      dispatch({
-        type: "DELETE_TODO",
-        id: id
-      });
+      dispatch(deleteTodo(id));
     },
     addTodo: todo => {
-      dispatch({
-        type: "ADD_TODO",
-        todo: todo
-      });
+      dispatch(addTodo(todo));
     },
     toggleTodo: id => {
-      dispatch({
-        type: "TOGGLE_TODO",
-        id: id
-      });
+      dispatch(toggleTodo(id));
     },
     completeAllTodo: () => {
-      dispatch({
-        type: "COMPLETE_ALL_TODO"
-      });
+      dispatch(completeAllTodo());
     },
     uncompleteAllTodo: () => {
-      dispatch({
-        type: "UNCOMPLETE_ALL_TODO"
-      });
+      dispatch(uncompleteAllTodo());
     },
     deleteAllTodo: () => {
-      dispatch({
-        type: "DELETE_ALL_TODO"
-      });
+      dispatch(deleteAllTodo());
     }
   };
 };
