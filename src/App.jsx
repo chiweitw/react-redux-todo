@@ -7,11 +7,8 @@ class App extends Component {
     todos: [
       {
         id: 1,
-        content: "todo task1"
-      },
-      {
-        id: 2,
-        content: "todo task2"
+        content: "a dummy task",
+        completed: false
       }
     ]
   };
@@ -27,7 +24,20 @@ class App extends Component {
 
   addTodo = todo => {
     todo.id = 1 + Math.max(...this.state.todos.map(todo => todo.id));
-    let todos = [...this.state.todos, todo];
+    todo.completed = false;
+    const todos = [...this.state.todos, todo];
+    this.setState({
+      todos: todos
+    });
+  };
+
+  toggleTodo = todo => {
+    const todoId = todo.id;
+    const todos = this.state.todos.map(todo => {
+      return todo.id === todoId
+        ? { ...todo, completed: !todo.completed }
+        : todo;
+    });
     this.setState({
       todos: todos
     });
@@ -38,7 +48,11 @@ class App extends Component {
       <div>
         <h2>Todos</h2>
         <TodoForm addTodo={this.addTodo} />
-        <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <TodoList
+          todos={this.state.todos}
+          deleteTodo={this.deleteTodo}
+          toggleTodo={this.toggleTodo}
+        />
       </div>
     );
   }
