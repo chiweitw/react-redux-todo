@@ -40,27 +40,14 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteTodo: id => {
-      dispatch(deleteTodo(id));
-    },
-    addTodo: todo => {
-      dispatch(addTodo(todo));
-    },
-    toggleTodo: id => {
-      dispatch(toggleTodo(id));
-    },
-    completeAllTodo: () => {
-      dispatch(completeAllTodo());
-    },
-    uncompleteAllTodo: () => {
-      dispatch(uncompleteAllTodo());
-    },
-    deleteAllTodo: () => {
-      dispatch(deleteAllTodo());
-    }
-  };
+// each property of the object is expected to be an action creator function (in other words, a function that returns an action).
+const mapDispatchToProps = {
+  deleteTodo,
+  addTodo,
+  toggleTodo,
+  completeAllTodo,
+  uncompleteAllTodo,
+  deleteAllTodo
 };
 
 export default connect(
