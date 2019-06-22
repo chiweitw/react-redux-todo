@@ -16,5 +16,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [X] Create basic React todo
 - [X] Use react-router-dom for navigation
 - [X] Refactoring with Redux architecture
-- [ ] Convert to TypeScript
-- [ ] Improve Styling 
+- [ ] Converting to TypeScript
+- [ ] Improving Styling 
