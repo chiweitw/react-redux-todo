@@ -1,89 +1,18 @@
 import React, { Component } from "react";
-import TodoList from "./TodoList";
-import TodoForm from "./TodoForm";
-import TodoFilter from "./TodoFilter";
+import { BrowserRouter, Route } from "react-router-dom";
+
 import NavBar from "./NavBar";
+import Home from "./Home";
+import Todo from "./Todo";
 
-let nexId = 1;
-
-class App extends Component {
-  state = {
-    todos: []
-  };
-
-  deleteTodo = id => {
-    const todos = this.state.todos.filter(todo => {
-      return todo.id !== id;
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  addTodo = todo => {
-    todo.id = nexId++;
-    todo.completed = false;
-    const todos = [...this.state.todos, todo];
-    this.setState({
-      todos: todos
-    });
-  };
-
-  toggleTodo = todo => {
-    const todoId = todo.id;
-    const todos = this.state.todos.map(todo => {
-      return todo.id === todoId
-        ? { ...todo, completed: !todo.completed }
-        : todo;
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  completeAllTodo = () => {
-    const todos = this.state.todos.map(todo => {
-      return { ...todo, completed: true };
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  unCompleteAllTodo = () => {
-    const todos = this.state.todos.map(todo => {
-      return { ...todo, completed: false };
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  deleteAllTodo = () => {
-    this.setState({
-      todos: []
-    });
-  };
-
+export default class App extends Component {
   render() {
     return (
-      <div>
+      <BrowserRouter>
         <NavBar />
-        <h2>Todos</h2>
-        <TodoForm addTodo={this.addTodo} />
-        <TodoList
-          todos={this.state.todos}
-          deleteTodo={this.deleteTodo}
-          toggleTodo={this.toggleTodo}
-        />
-        <TodoFilter
-          completeAllTodo={this.completeAllTodo}
-          unCompleteAllTodo={this.unCompleteAllTodo}
-          deleteAllTodo={this.deleteAllTodo}
-        />
-      </div>
+        <Route exact path="/" component={Home} />
+        <Route path="/todo" component={Todo} />
+      </BrowserRouter>
     );
   }
 }
-
-export default App;
