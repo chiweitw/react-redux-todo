@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import TodoFilter from "./TodoFilter";
+
+let nexId = 1;
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        content: "a dummy task",
-        completed: false
-      }
-    ]
+    todos: []
   };
 
   deleteTodo = id => {
@@ -23,7 +20,7 @@ class App extends Component {
   };
 
   addTodo = todo => {
-    todo.id = 1 + Math.max(...this.state.todos.map(todo => todo.id));
+    todo.id = nexId++;
     todo.completed = false;
     const todos = [...this.state.todos, todo];
     this.setState({
@@ -43,6 +40,12 @@ class App extends Component {
     });
   };
 
+  deleteAllTodo = () => {
+    this.setState({
+      todos: []
+    });
+  };
+
   render() {
     return (
       <div>
@@ -53,6 +56,7 @@ class App extends Component {
           deleteTodo={this.deleteTodo}
           toggleTodo={this.toggleTodo}
         />
+        <TodoFilter deleteAllTodo={this.deleteAllTodo} />
       </div>
     );
   }
