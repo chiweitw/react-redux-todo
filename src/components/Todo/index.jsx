@@ -1,87 +1,76 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
 
-let nexId = 1;
-
 class Todo extends Component {
-  state = {
-    todos: []
-  };
-
-  deleteTodo = id => {
-    const todos = this.state.todos.filter(todo => {
-      return todo.id !== id;
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  addTodo = todo => {
-    todo.id = nexId++;
-    todo.completed = false;
-    const todos = [...this.state.todos, todo];
-    this.setState({
-      todos: todos
-    });
-  };
-
-  toggleTodo = todo => {
-    const todoId = todo.id;
-    const todos = this.state.todos.map(todo => {
-      return todo.id === todoId
-        ? { ...todo, completed: !todo.completed }
-        : todo;
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  completeAllTodo = () => {
-    const todos = this.state.todos.map(todo => {
-      return { ...todo, completed: true };
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  unCompleteAllTodo = () => {
-    const todos = this.state.todos.map(todo => {
-      return { ...todo, completed: false };
-    });
-    this.setState({
-      todos: todos
-    });
-  };
-
-  deleteAllTodo = () => {
-    this.setState({
-      todos: []
-    });
-  };
-
   render() {
     return (
       <div>
         <h2>Todos</h2>
-        <TodoForm addTodo={this.addTodo} />
+        <TodoForm addTodo={todo => this.props.addTodo(todo)} />
         <TodoList
-          todos={this.state.todos}
-          deleteTodo={this.deleteTodo}
-          toggleTodo={this.toggleTodo}
+          todos={this.props.todos}
+          deleteTodo={id => this.props.deleteTodo(id)}
+          toggleTodo={id => this.props.toggleTodo(id)}
         />
         <TodoFilter
-          completeAllTodo={this.completeAllTodo}
-          unCompleteAllTodo={this.unCompleteAllTodo}
-          deleteAllTodo={this.deleteAllTodo}
+          completeAllTodo={() => this.props.completeAllTodo()}
+          uncompleteAllTodo={() => this.props.uncompleteAllTodo()}
+          deleteAllTodo={() => this.props.deleteAllTodo()}
         />
       </div>
     );
   }
 }
 
-export default Todo;
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteTodo: id => {
+      dispatch({
+        type: "DELETE_TODO",
+        id: id
+      });
+    },
+    addTodo: todo => {
+      dispatch({
+        type: "ADD_TODO",
+        todo: todo
+      });
+    },
+    toggleTodo: id => {
+      dispatch({
+        type: "TOGGLE_TODO",
+        id: id
+      });
+    },
+    completeAllTodo: () => {
+      dispatch({
+        type: "COMPLETE_ALL_TODO"
+      });
+    },
+    uncompleteAllTodo: () => {
+      dispatch({
+        type: "UNCOMPLETE_ALL_TODO"
+      });
+    },
+    deleteAllTodo: () => {
+      dispatch({
+        type: "DELETE_ALL_TODO"
+      });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Todo);

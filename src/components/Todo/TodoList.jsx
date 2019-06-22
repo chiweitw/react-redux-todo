@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class TodoList extends Component {
+class TodoList extends Component {
   render() {
     const unCompleted = {
       color: "blue"
@@ -18,7 +18,7 @@ export default class TodoList extends Component {
               <li id={todo.id} key={todo.id}>
                 <input
                   checked={todo.completed ? true : false}
-                  onChange={() => this.props.toggleTodo(todo)}
+                  onChange={() => this.props.toggleTodo(todo.id)}
                   type="checkbox"
                 />
                 <span style={todo.completed ? completed : unCompleted}>
@@ -38,3 +38,5 @@ export default class TodoList extends Component {
     return todoList;
   }
 }
+
+export default TodoList;
