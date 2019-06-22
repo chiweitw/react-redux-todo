@@ -1,4 +1,4 @@
-Learning React/Redux/Typescript by doing a Todo App
+# [WIP] Learning React/Redux/Typescript by doing a Todo App
 
 ## How to build project
 
