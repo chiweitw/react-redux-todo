@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
-import TodoFilter from "./TodoFilter";
+import TodoFilter from "./TodoPanel";
 import {
   deleteTodo,
   addTodo,

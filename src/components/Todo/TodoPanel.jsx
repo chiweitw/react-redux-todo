@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class TodoFilter extends Component {
+export default class TodoPanel extends Component {
   render() {
     return (
       <div>
