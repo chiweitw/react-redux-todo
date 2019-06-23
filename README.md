@@ -2,7 +2,7 @@
 
 ## How to build project
 
-### `npm start`
+### `npm install`
 
 Install all the dependencies in need.
 
