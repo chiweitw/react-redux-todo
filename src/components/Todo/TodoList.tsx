@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import Todo from "../../model/todo";
 
-class TodoList extends Component {
+interface Props {
+  todos: Todo[];
+  deleteTodo: (id: number) => void;
+  toggleTodo: (id: number) => void;
+}
+
+class TodoList extends Component<Props> {
   render() {
     const unCompleted = {
       color: "blue"
@@ -13,9 +20,9 @@ class TodoList extends Component {
     const todoList = this.props.todos.length ? (
       <div>
         <ul>
-          {this.props.todos.map(todo => {
+          {this.props.todos.map((todo: Todo) => {
             return (
-              <li id={todo.id} key={todo.id}>
+              <li id={`${todo.id}`} key={`${todo.id}`}>
                 <input
                   checked={todo.completed ? true : false}
                   onChange={() => this.props.toggleTodo(todo.id)}

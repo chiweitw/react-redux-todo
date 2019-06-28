@@ -1,8 +1,9 @@
-const initState = [];
+import { TodoAction } from "../actions/todoActions";
+import Todo from "../model/todo";
 
 let nextId = 0;
 
-const todo = (state = initState, action) => {
+const todo = (state: Todo[] = [], action: TodoAction) => {
   switch (action.type) {
     case "DELETE_TODO":
       var todos = state.filter(todo => {
@@ -12,7 +13,7 @@ const todo = (state = initState, action) => {
     case "ADD_TODO":
       var todo = {
         id: nextId++,
-        content: action.todo.content,
+        content: action.todo,
         completed: false
       };
       return [...state, todo];

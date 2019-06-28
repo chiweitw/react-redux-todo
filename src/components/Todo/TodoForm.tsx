@@ -1,27 +1,25 @@
 import React, { Component } from "react";
 
-export default class TodoForm extends Component {
+interface Props {
+  addTodo: (todo: string) => void;
+}
+
+export default class TodoForm extends Component<Props> {
   state = {
-    todo: {
-      content: ""
-    }
+    todo: ""
   };
 
-  handleChange = e => {
+  handleChange = (e: any) => {
     this.setState({
-      todo: {
-        content: e.target.value
-      }
+      todo: e.target.value
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.addTodo(this.state.todo);
     this.setState({
-      todo: {
-        content: ""
-      }
+      todo: ""
     });
   };
 
@@ -32,7 +30,7 @@ export default class TodoForm extends Component {
         <input
           onChange={this.handleChange}
           type="text"
-          value={this.state.todo.content}
+          value={this.state.todo}
         />
         <button>Add</button>
       </form>

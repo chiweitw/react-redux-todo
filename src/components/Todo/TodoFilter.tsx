@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
-export default class TodoPanel extends Component {
+interface Props {
+  completeAllTodo: () => void;
+  uncompleteAllTodo: () => void;
+  deleteAllTodo: () => void;
+}
+
+export default class TodoFilter extends Component<Props> {
   render() {
     return (
       <div>
