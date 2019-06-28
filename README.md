@@ -1,4 +1,11 @@
-# [WIP] Learning React/Redux/Typescript by doing a Todo App
+# Learning React/Redux/Typescript by doing a Todo App
+Todo App with following features:
+- Add todo
+- Delete todo
+- Toggle todo
+- Complete all todos
+- Uncomplete all todos
+- Delete all todos
 
 ## How to build project
 
